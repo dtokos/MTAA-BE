@@ -69,9 +69,9 @@ class PostController extends Controller {
 
 	private function response($posts, $users, $categories) {
 		return new JsonResponse([
-			'posts' => PostResource::collection($posts->keyBy('id')),
-			'users' => UserResource::collection($users->keyBy('id')),
-			'categories' => CategoryResource::collection($categories->keyBy('id')),
+			'posts' => (object)PostResource::collection($posts->keyBy('id'))->jsonSerialize(),
+			'users' => (object)UserResource::collection($users->keyBy('id'))->jsonSerialize(),
+			'categories' => (object)CategoryResource::collection($categories->keyBy('id'))->jsonSerialize(),
 		]);
 	}
 }

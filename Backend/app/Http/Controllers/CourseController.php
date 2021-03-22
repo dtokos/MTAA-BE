@@ -14,7 +14,7 @@ class CourseController extends Controller {
 
 	private function response($courses) {
 		return new JsonResponse([
-			'courses' => CourseResource::collection($courses->keyBy('id')),
+			'courses' => (object)CourseResource::collection($courses->keyBy('id'))->jsonSerialize(),
 		]);
 	}
 }

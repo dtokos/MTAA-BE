@@ -14,7 +14,7 @@ class CategoryController extends Controller {
 
 	private function response($categories) {
 		return new JsonResponse([
-			'categories' => CategoryResource::collection($categories->keyBy('id')),
+			'categories' => (object)CategoryResource::collection($categories->keyBy('id'))->jsonSerialize(),
 		]);
 	}
 }
