@@ -10,10 +10,12 @@ class UpdateRequest extends FormRequest {
 	}
 
 	public function rules() {
+		$user = $this->route('user');
+
 		return [
-			'category_id' => 'required|integer|exists:categories,id',
-			'title' => 'required|string',
-			'content' => 'required|string',
+			'name' => 'required|string',
+			'email' => 'required|email|unique:users,email,'. $user->id .',id',
+			'password' => 'nullable|string|min:6',
 		];
 	}
 }

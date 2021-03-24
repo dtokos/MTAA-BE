@@ -8,6 +8,16 @@ Route::group([
 	Route::get('/', 'CategoryController@index');
 });
 
+
+
+Route::group([
+	'prefix' => 'users'
+], function() {
+	Route::put('{user}', 'UserController@update');
+});
+
+
+
 Route::group([
 	'prefix' => 'courses'
 ], function() {
@@ -23,5 +33,15 @@ Route::group([
 		Route::post('/', 'PostController@store');
 		Route::put('{post:id}', 'PostController@update');
 		Route::delete('{post:id}', 'PostController@destroy');
+
+
+		Route::group([
+			'prefix' => '{post:id}/comments',
+		], function() {
+			Route::get('/', 'CommentController@index');
+			Route::post('/', 'CommentController@store');
+			Route::put('{comment:id}', 'CommentController@update');
+			Route::delete('{comment:id}', 'CommentController@destroy');
+		});
 	});
 });
