@@ -39,6 +39,8 @@ class PostController extends Controller {
 	}
 
 	public function update(UpdateRequest $request, Course $course, Post $post) {
+		$this->authorize('update', $post);
+
 		$category = Category::find($request->category_id);
 		$user = $post->user;
 
@@ -51,6 +53,8 @@ class PostController extends Controller {
 	}
 
 	public function destroy(Course $course, Post $post) {
+		$this->authorize('destroy', $post);
+
 		$user = $post->user;
 		$category = $post->category;
 

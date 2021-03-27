@@ -34,6 +34,8 @@ class CommentController extends Controller {
 	}
 
 	public function update(UpdateRequest $request, Course $course, Post $post, Comment $comment) {
+		$this->authorize('update', $comment);
+
 		$user = $comment->user;
 
 		$comment->content = $request->content;
@@ -43,6 +45,8 @@ class CommentController extends Controller {
 	}
 
 	public function destroy(Course $course, Post $post, Comment $comment) {
+		$this->authorize('destroy', $comment);
+
 		$user = $comment->user;
 
 		$comment->delete();

@@ -3,7 +3,15 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-	'prefix' => 'categories'
+	'prefix' => 'auth',
+], function() {
+	Route::post('login', 'AuthController@login');
+	Route::post('logout', 'AuthController@logout')->middleware('auth:api');
+});
+
+Route::group([
+	'prefix' => 'categories',
+	'middleware' => 'auth',
 ], function() {
 	Route::get('/', 'CategoryController@index');
 });
@@ -11,7 +19,8 @@ Route::group([
 
 
 Route::group([
-	'prefix' => 'users'
+	'prefix' => 'users',
+	'middleware' => 'auth',
 ], function() {
 	Route::put('{user}', 'UserController@update');
 });
@@ -19,7 +28,8 @@ Route::group([
 
 
 Route::group([
-	'prefix' => 'courses'
+	'prefix' => 'courses',
+	'middleware' => 'auth',
 ], function() {
 	Route::get('/', 'CourseController@index');
 

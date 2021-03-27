@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable {
+class User extends Authenticatable implements JWTSubject {
 	protected $hidden = [
 		'password',
 		'remember_token',
@@ -16,5 +17,13 @@ class User extends Authenticatable {
 
 	public function comments() {
 		return $this->hasMany(\App\Models\Comment::class);
+	}
+
+	public function getJWTIdentifier() {
+		return $this->getKey();
+	}
+
+	public function getJWTCustomClaims() {
+		return [];
 	}
 }
