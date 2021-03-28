@@ -21,6 +21,7 @@ class UserSeeder extends Seeder {
 				'name' => 'Eugen Ártvy',
 				'email' => 'eugen.artvy@example.com',
 				'password' => Hash::make('12345678'),
+				'profile_image' => UserFactory::getImages()[0],
 				'created_at' => $now,
 				'updated_at' => $now,
 			],

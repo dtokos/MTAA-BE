@@ -16,6 +16,7 @@ class UpdateRequest extends FormRequest {
 			'name' => 'required|string',
 			'email' => 'required|email|unique:users,email,'. $user->id .',id',
 			'password' => 'nullable|string|min:6',
+			'profile_image' => 'nullable|base64image',
 		];
 	}
 }
