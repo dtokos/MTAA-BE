@@ -10,6 +10,7 @@ use App\Http\Requests\Comments\CreateRequest;
 use App\Http\Requests\Comments\UpdateRequest;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
 use Illuminate\Http\JsonResponse;
 
@@ -22,7 +23,7 @@ class CommentController extends Controller {
 	}
 
 	public function store(CreateRequest $request, Course $course, Post $post) {
-		$user = User::first(); // TODO: Change after implementing Auth to current user
+		$user = Auth::user();
 		
 		$comment = new Comment();
 		$comment->content = $request->content;

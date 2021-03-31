@@ -11,6 +11,7 @@ use App\Http\Requests\Posts\UpdateRequest;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\CategoryResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Collection;
 use Illuminate\Http\JsonResponse;
 
@@ -25,7 +26,7 @@ class PostController extends Controller {
 
 	public function store(CreateRequest $request, Course $course) {
 		$category = Category::find($request->category_id);
-		$user = User::first(); // TODO: Change after implementing Auth to current user
+		$user = Auth::user();
 		
 		$post = new Post();
 		$post->title = $request->title;
