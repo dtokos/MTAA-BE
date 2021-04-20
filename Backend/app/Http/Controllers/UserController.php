@@ -19,7 +19,7 @@ class UserController extends Controller {
 		if (!empty($request->password))
 			$user->password = Hash::make($request->password);
 		if (!empty($request->profile_image))
-			$user->profile_image = Image::make($request->profile_image)->fit(75)->encode('data-url');
+			$user->profile_image = (string)Image::make($request->profile_image)->fit(75)->encode('data-url');
 		$user->save();
 
 		return $this->singlesResponse($user);
